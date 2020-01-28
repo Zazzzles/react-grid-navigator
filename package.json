@@ -12,7 +12,7 @@
   },
   "scripts": {
     "prepublish": "npm run build",
-    "build": "microbundle --format=cjs --target=node --jsx"
+    "build": "microbundle"
   },
   "files": [
     "dist"
