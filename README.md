@@ -85,7 +85,7 @@ Defining a grid is best done before all UI components are mounted. So do this in
 
 ## Defining focusable components
 
-![Example1](https://github.com/Zazzzles/react-grid-navigator/blob/master/examples/example2.jpg)
+![Example1](https://github.com/Zazzzles/react-grid-navigator/blob/master/examples/export2.jpg)
 
 `FocusProvider` is used to wrap elements that need to have a focusable state. All elements that need to be focusable need to be direct children of `FocusProvider`.
 
