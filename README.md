@@ -57,7 +57,7 @@ FocusEngine.setGrid(
     ["sidenav", "contentTop", "sidebar"],
     ["sidenav", "content", "sidebar"]
   ],
-  "cc"
+  "content"
 );
 ```
 
@@ -77,7 +77,7 @@ FocusEngine.setGrid(
     ["sidenav", "sidebar"], // <- not valid
     ["sidenav", "content", "sidebar"]
   ],
-  "cc"
+  "content"
 );
 ```
 
