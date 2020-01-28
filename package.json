@@ -16,7 +16,7 @@
   },
   "scripts": {
     "prepublish": "npm run build",
-    "build": "microbundle --tsconfig ./tsconfig.json --jsx preserve"
+    "build": "microbundle --tsconfig ./tsconfig.json --jsx React.createElement"
   },
   "files": [
     "dist"
