@@ -1,0 +1,35 @@
+{
+  "name": "react-grid-navigator",
+  "version": "1.0.0",
+  "description": "A keyboard based focus navigation engine for React",
+  "source": "src/index.js",
+  "main": "dist/index.js",
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "typescript": "^3.7.5",
+    "unstated": "^2.1.1"
+  },
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "microbundle --format=cjs --target=node"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "focus",
+    "navigation",
+    "keyboard",
+    "tv",
+    "grid",
+    "accessibility",
+    "javascript"
+  ],
+  "author": "Ras Brits",
+  "license": "MIT",
+  "devDependencies": {
+    "microbundle": "^0.11.0"
+  }
+}
