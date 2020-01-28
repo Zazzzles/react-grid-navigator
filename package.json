@@ -4,10 +4,15 @@
   "description": "A keyboard based focus navigation engine for React",
   "source": "src/index.ts",
   "main": "dist/index.ts",
-  "dependencies": {
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "microbundle": "^0.11.0"
   },
   "scripts": {
     "prepublish": "npm run build",
@@ -31,8 +36,5 @@
     "javascript"
   ],
   "author": "Ras Brits",
-  "license": "MIT",
-  "devDependencies": {
-    "microbundle": "^0.11.0"
-  }
+  "license": "MIT"
 }
