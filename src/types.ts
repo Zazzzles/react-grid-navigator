@@ -1,5 +1,3 @@
-import Cell from "./Cell.ts";
-
 export type Coords = {
   x: number;
   y: number;
@@ -16,4 +14,4 @@ export type Maxes = {
   yMaxes: Array<number>;
 };
 
-export type CellCollection = { [key: string]: Cell };
+export type CellCollection = { [key: string]: any };

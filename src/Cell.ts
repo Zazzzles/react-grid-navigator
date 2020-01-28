@@ -1,4 +1,4 @@
-import { Coords, Maxes } from "./types.ts";
+import { Coords, Maxes } from "./types";
 
 export default class Cell {
   coords: Array<Coords>;

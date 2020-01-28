@@ -1,14 +1,14 @@
 import { Container } from "unstated";
 
-import { Coords, NewCoords, CellCollection, Maxes } from "./types.ts";
+import { Coords, NewCoords, CellCollection, Maxes } from "./types";
 
 import {
   getDirection,
   applyDirectionCoords,
   applyCellDimensionOffsets
-} from "./methods.ts";
+} from "./methods";
 
-import Cell from "./Cell.ts";
+import Cell from "./Cell";
 
 class FocusEngine extends Container<any> {
   cellFocusEvents: { [key: string]: Function };

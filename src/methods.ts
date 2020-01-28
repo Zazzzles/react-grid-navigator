@@ -1,4 +1,4 @@
-import { Coords, NewCoords } from "./types.ts";
+import { Coords, NewCoords } from "./types";
 
 export function getDirection(
   nX: number,
