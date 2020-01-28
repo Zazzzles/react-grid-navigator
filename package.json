@@ -3,7 +3,7 @@
   "version": "1.0.8",
   "description": "A keyboard based focus navigation engine for React",
   "source": "src/index.ts",
-  "main": "dist/index.ts",
+  "main": "dist/index.js",
   "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
