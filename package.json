@@ -17,6 +17,10 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zazzzles/react-grid-navigator.git"
+  },
   "keywords": [
     "react",
     "focus",
