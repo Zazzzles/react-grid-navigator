@@ -17,7 +17,7 @@ class FocusEngine extends Container {
     };
     activeCellCoords: { x: 0; y: 0 };
     grid: [];
-    cells: {};
+    cells: { [key: string]: Cell };
     activeCell: "";
   };
   setState: any;
@@ -78,16 +78,13 @@ class FocusEngine extends Container {
 
   addCellCoords = (cell: string, coords: Coords): void => {
     let { grid } = this.state;
-    let selectedCell = grid.reduce(
-      (acc: Cell | undefined, row: Array<Cell>) => {
-        if (!acc) {
-          return row.find((item: Cell) => item.name === cell);
-        } else {
-          return acc;
-        }
-      },
-      null
-    );
+    let selectedCell = grid.reduce((acc: any | undefined, row: Array<Cell>) => {
+      if (!acc) {
+        return row.find((item: Cell) => item.name === cell);
+      } else {
+        return acc;
+      }
+    }, null);
     if (selectedCell) {
       selectedCell.addCoords = coords;
     }

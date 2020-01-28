@@ -16,7 +16,7 @@
   },
   "scripts": {
     "prepublish": "npm run build",
-    "build": "microbundle --jsx react"
+    "build": "microbundle --tsconfig ./tsconfig.json"
   },
   "files": [
     "dist"
