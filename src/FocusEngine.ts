@@ -10,7 +10,7 @@ import {
 
 import Cell from "./Cell";
 
-class FocusEngine extends Container {
+export class FocusEngine extends Container {
   state: {
     coords: {
       x: 0;
