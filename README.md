@@ -41,22 +41,22 @@ document.addEventListener("keydown", event => {
 });
 ```
 
-## Setting up unstated
+## Setting up context provider
 
-This package uses `unstated` for state propegation. For this to work, you need to wrap the root element of your app in a `Provider`
+This package uses context for state propegation. For this to work, you need to wrap the root element of your app in `GridContext`
 
 ```js
 import React from "react";
 
 import RootComponent from './src/root'
 
-import { Provider } from 'unstated'
+import { GridContext } from 'react-grid-navigator'
 
 export default function App () {
  
-    return <Provider>
+    return <GridContext>
     <RootComponent>
-    </Provider>
+    </GridContext>
 
 }
 
