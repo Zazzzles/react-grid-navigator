@@ -1,6 +1,6 @@
 {
   "name": "react-grid-navigator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A keyboard based focus navigation engine for React",
   "source": "src/index.js",
   "main": "dist/index.js",
