@@ -11,6 +11,17 @@ import {
 import Cell from "./Cell";
 
 class FocusEngine extends Container {
+  state: {
+    coords: {
+      x: 0;
+      y: 0;
+    };
+    activeCellCoords: { x: 0; y: 0 };
+    grid: [];
+    cells: {};
+    activeCell: "";
+  };
+  setState: any;
   cellFocusEvents: { [key: string]: Function };
   cellBlurEvents: { [key: string]: Function };
   cellIndexChangeEvents: { [key: string]: Function };
