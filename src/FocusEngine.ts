@@ -1,4 +1,4 @@
-import { Container } from "unstated";
+import { Container } from "./context";
 
 import { Coords, NewCoords, CellCollection, Maxes } from "./types";
 
@@ -10,7 +10,7 @@ import {
 
 import Cell from "./Cell";
 
-class FocusEngine extends Container<any> {
+class FocusEngine extends Container {
   cellFocusEvents: { [key: string]: Function };
   cellBlurEvents: { [key: string]: Function };
   cellIndexChangeEvents: { [key: string]: Function };

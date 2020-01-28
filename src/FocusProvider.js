@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from "react";
 
-import { Subscribe } from "unstated";
+import { Subscribe } from "./context";
 import FocusEngine from "./FocusEngine";
 
 const FocusProvider = ({ children, cell }) => {
