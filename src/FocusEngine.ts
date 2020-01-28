@@ -1,4 +1,4 @@
-import { Container } from "unstated";
+import { Container } from "./unstated";
 
 import { Coords, NewCoords, CellCollection, Maxes } from "./types";
 
