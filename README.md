@@ -41,6 +41,28 @@ document.addEventListener("keydown", event => {
 });
 ```
 
+## Setting up unstated
+
+This package uses `unstated` for state propegation. For this to work, you need to wrap the root element of your app in a `Provider`
+
+```js
+import React from "react";
+
+import RootComponent from './src/root'
+
+import { Provider } from 'unstated'
+
+export default function App () {
+ 
+    return <Provider>
+    <RootComponent>
+    </Provider>
+
+}
+
+```
+
+
 ## Setting up the grid
 
 ![Example](https://github.com/Zazzzles/react-grid-navigator/blob/master/examples/example1.jpg)
