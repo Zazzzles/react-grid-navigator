@@ -65,7 +65,7 @@ export default function App () {
 
 ## Setting up the grid
 
-![Example](https://github.com/Zazzzles/react-grid-navigator/blob/master/examples/example1.jpg)
+![Example](https://i.imgur.com/7SLSr0g.jpg)
 
 First we need to define our grid layout by providing a nested array of rows and columns. This grid will mirror the layout of your UI.
 
@@ -107,7 +107,7 @@ Defining a grid is best done before all UI components are mounted. So do this in
 
 ## Defining focusable components
 
-![Example1](https://github.com/Zazzzles/react-grid-navigator/blob/master/examples/export2.jpg)
+![Example1](https://i.imgur.com/2p482CP.jpg)
 
 `FocusProvider` is used to wrap elements that need to have a focusable state. All elements that need to be focusable need to be direct children of `FocusProvider`.
 
