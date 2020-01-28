@@ -45,9 +45,9 @@ document.addEventListener("keydown", event => {
 
 ![Example](https://github.com/Zazzzles/react-grid-navigator/blob/master/examples/example1.jpg)
 
-Then we need to define our grid layout by providing a nested array of rows and columns. This grid will mirror the layout of your UI.
+First we need to define our grid layout by providing a nested array of rows and columns. This grid will mirror the layout of your UI.
 
-Start by defining cell names on the grid. Each cell will have focusable indexes inside and focus will switch between the cells when the cell's limit is reached.
+Start by defining cell names on the grid. Each cell will have focusable indexes inside and focus will switch between the cells when a cell's limit is reached.
 
 ```js
 import { FocusEngine } from "react-grid-navigator";
@@ -229,7 +229,7 @@ From this example we can se that the `modalTop` cell contains the close modal bu
 
 `FocusProvider.addCellFocusEvent(cellName, function)`
 
-This method is fired when a specific cell receives focus
+This method is fired when a specific cell receives focus. This is useful for cases where we want to trigger things like a sidebar opening
 
 `FocusProvider.addCellBlurEvent(cellName, function)`
 
