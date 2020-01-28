@@ -16,7 +16,7 @@
   },
   "scripts": {
     "prepublish": "npm run build",
-    "build": "microbundle"
+    "build": "microbundle --jsx react"
   },
   "files": [
     "dist"
