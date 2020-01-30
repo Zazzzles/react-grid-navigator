@@ -20,7 +20,6 @@ class FocusEngine extends Container {
     cells: { [key: string]: Cell };
     activeCell: "";
   };
-  setState: any;
   cellFocusEvents: { [key: string]: Function };
   cellBlurEvents: { [key: string]: Function };
   cellIndexChangeEvents: { [key: string]: Function };
@@ -43,7 +42,7 @@ class FocusEngine extends Container {
     this.focusActions = {};
   }
 
-  setGrid = (gridNames: Array<[]>, activeCell: string): Promise<void> => {
+  setGrid(gridNames: Array<[]>, activeCell: string): Promise<void> {
     let cells: CellCollection = {};
     let grid = gridNames.map((rows, yIndex) => {
       return rows.map((cellName, xIndex) => {
@@ -62,9 +61,9 @@ class FocusEngine extends Container {
       activeCell,
       activeCellCoords: cells[activeCell].gridPositions[0]
     });
-  };
+  }
 
-  setActiveCell = (newActiveCell: string, direction: string): void => {
+  setActiveCell(newActiveCell: string, direction: string): void {
     const { cells, activeCell } = this.state;
     this.cellFocusEvents[newActiveCell] &&
       this.cellFocusEvents[newActiveCell]();
@@ -74,9 +73,9 @@ class FocusEngine extends Container {
       activeCellCoords: cells[newActiveCell].gridPositions[0],
       coords: cells[newActiveCell].getNextLogicalIndex(direction)
     });
-  };
+  }
 
-  addCellCoords = (cell: string, coords: Coords): void => {
+  addCellCoords(cell: string, coords: Coords): void {
     let { grid } = this.state;
     let selectedCell = grid.reduce((acc: any | undefined, row: Array<Cell>) => {
       if (!acc) {
@@ -88,25 +87,25 @@ class FocusEngine extends Container {
     if (selectedCell) {
       selectedCell.addCoords = coords;
     }
-  };
+  }
 
-  addCellFocusEvent = (cellName: string, func: Function) => {
+  addCellFocusEvent(cellName: string, func: Function) {
     this.cellFocusEvents[cellName] = func;
-  };
+  }
 
-  addCellBlurEvent = (cellName: string, func: Function) => {
+  addCellBlurEvent(cellName: string, func: Function) {
     this.cellBlurEvents[cellName] = func;
-  };
+  }
 
-  addCellIndexChangeEvent = (cellName: string, func: Function) => {
+  addCellIndexChangeEvent(cellName: string, func: Function) {
     this.cellIndexChangeEvents[cellName] = func;
-  };
+  }
 
-  addFocusAction = (index: Array<number>, cellName: string, func: Function) => {
+  addFocusAction(index: Array<number>, cellName: string, func: Function) {
     this.focusActions[cellName + index.join()] = func;
-  };
+  }
 
-  onArrowUp = () => {
+  onArrowUp() {
     const { x, y } = this.state.coords;
     if (this.pipeMove(x, y - 1)) {
       this.setState({
@@ -116,9 +115,9 @@ class FocusEngine extends Container {
         }
       });
     }
-  };
+  }
 
-  onArrowDown = () => {
+  onArrowDown() {
     const { x, y } = this.state.coords;
     if (this.pipeMove(x, y + 1)) {
       this.setState({
@@ -128,9 +127,9 @@ class FocusEngine extends Container {
         }
       });
     }
-  };
+  }
 
-  onArrowLeft = () => {
+  onArrowLeft() {
     const { x, y } = this.state.coords;
     if (this.pipeMove(x - 1, y)) {
       this.setState({
@@ -140,9 +139,9 @@ class FocusEngine extends Container {
         }
       });
     }
-  };
+  }
 
-  onArrowRight = () => {
+  onArrowRight() {
     const { x, y } = this.state.coords;
     if (this.pipeMove(x + 1, y)) {
       this.setState({
@@ -152,15 +151,15 @@ class FocusEngine extends Container {
         }
       });
     }
-  };
+  }
 
-  onEnter = () => {
+  onEnter() {
     const { coords, activeCell } = this.state;
     this.focusActions[activeCell + [coords.x, coords.y].join()] &&
       this.focusActions[activeCell + [coords.x, coords.y].join()]();
-  };
+  }
 
-  pipeMove = (nX: number, nY: number) => {
+  pipeMove(nX: number, nY: number) {
     const { coords }: { coords: Coords } = this.state;
     let newCoords: NewCoords = {
       nX,
@@ -168,9 +167,9 @@ class FocusEngine extends Container {
       direction: getDirection(nX, nY, coords.x, coords.y)
     };
     return this.applyNavLogic(newCoords);
-  };
+  }
 
-  applyNavLogic = (newCoords: NewCoords) => {
+  applyNavLogic(newCoords: NewCoords) {
     const {
       cells,
       activeCell
@@ -245,15 +244,15 @@ class FocusEngine extends Container {
       this.fireIndexChangeEvent(newCoords);
     }
     return canMove;
-  };
+  }
 
-  fireIndexChangeEvent = (newCoords: NewCoords) => {
+  fireIndexChangeEvent(newCoords: NewCoords) {
     const { activeCell } = this.state;
     this.cellIndexChangeEvents[activeCell] &&
       this.cellIndexChangeEvents[activeCell](newCoords);
-  };
+  }
 
-  tryNavigateToNewCell = (newCoords: NewCoords) => {
+  tryNavigateToNewCell(newCoords: NewCoords) {
     //  FIXME: Good god refine this
     const { cells, grid, activeCell, activeCellCoords } = this.state;
     const { nX, nY, direction } = newCoords;
@@ -283,9 +282,9 @@ class FocusEngine extends Container {
         this.setActiveCell(nextCell, direction);
       }
     }
-  };
+  }
 
-  nextAvailableNeighboringCell = (nextGridCoord: Coords) => {
+  nextAvailableNeighboringCell(nextGridCoord: Coords) {
     const { cells } = this.state;
     let nextCell = undefined;
     Object.keys(cells).forEach(cellName => {
@@ -305,7 +304,7 @@ class FocusEngine extends Container {
       }
     });
     return nextCell;
-  };
+  }
 }
 
 export default new FocusEngine();
