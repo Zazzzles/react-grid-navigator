@@ -5,8 +5,7 @@ import { Coords, NewCoords, CellCollection, Maxes } from "./types";
 import {
   getDirection,
   applyDirectionCoords,
-  applyCellDimensionOffsets,
-  isValidGrid
+  applyCellDimensionOffsets
 } from "./methods";
 
 import Cell from "./Cell";
