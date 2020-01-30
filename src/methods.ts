@@ -75,3 +75,10 @@ export function applyCellDimensionOffsets(
 
   return { x: nX, y: nY };
 }
+
+export function isValidGrid(grid: Array<Array<string>>) {
+  let rowLength = grid[0].length;
+  return grid.every(row => {
+    return row.length === rowLength;
+  });
+}
