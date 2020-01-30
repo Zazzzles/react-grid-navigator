@@ -248,11 +248,11 @@ Here is what the modal would look like:
 
 From this example we can se that the `modalTop` cell contains the close modal button, and the `modalContent` cell contains the modal actions.
 
-`FocusProvider.addCellFocusEvent(cellName, function)`
+`FocusEngine.addCellFocusEvent(cellName, function)`
 
 This method is fired when a specific cell receives focus. This is useful for cases where we want to trigger things like a sidebar opening
 
-`FocusProvider.addCellBlurEvent(cellName, function)`
+`FocusEngine.addCellBlurEvent(cellName, function)`
 
 This method is fired when a specific cell loses focus
 
