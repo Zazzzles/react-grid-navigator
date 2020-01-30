@@ -58,6 +58,7 @@ class FocusEngine extends Container {
       });
     });
     return this.setState({
+      coords: { x: 0, y: 0 },
       grid,
       cells,
       activeCell,
