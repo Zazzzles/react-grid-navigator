@@ -53,7 +53,7 @@ import RootComponent from './src/root'
 import { GridContext } from 'react-grid-navigator'
 
 export default function App () {
- 
+
     return <GridContext>
     <RootComponent>
     </GridContext>
@@ -61,7 +61,6 @@ export default function App () {
 }
 
 ```
-
 
 ## Setting up the grid
 
@@ -87,16 +86,16 @@ With the above grid, when the last focusable element of cell `content` is reache
 
 Likewise, if the last focusable element of cell `content` is reached on the y axis, focus will be switched to the first element of the `contentTop` cell.
 
-**NOTE** : For a grid to be valid the amount of columns per row must be equal.
+**NOTE** : The grid that you specify will determine what cells are navigatable to from relative cells
 
-This is an example of an **invalid** grid
+This is an example of where you'll be able to navigate from `content` to `sidebar`, but not from `contentTop` to `sidebar`.
 
 ```js
 import { FocusEngine } from "react-grid-navigator";
 
 FocusEngine.setGrid(
   [
-    ["sidenav", "sidebar"], // <- not valid
+    ["sidenav", "contentTop"],
     ["sidenav", "content", "sidebar"]
   ],
   "content"

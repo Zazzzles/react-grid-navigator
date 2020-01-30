@@ -43,29 +43,25 @@ class FocusEngine extends Container {
     this.focusActions = {};
   }
 
-  setGrid(gridNames: Array<[]>, activeCell: string): Promise<void> | void {
+  setGrid(gridNames: Array<[]>, activeCell: string): Promise<void> {
     let cells: CellCollection = {};
-    if (isValidGrid(gridNames)) {
-      let grid = gridNames.map((rows, yIndex) => {
-        return rows.map((cellName, xIndex) => {
-          if (cells[cellName]) {
-            cells[cellName].addGridPosition = { x: xIndex, y: yIndex };
-            return cells[cellName];
-          } else {
-            cells[cellName] = new Cell(cellName, { x: xIndex, y: yIndex });
-            return cells[cellName];
-          }
-        });
+    let grid = gridNames.map((rows, yIndex) => {
+      return rows.map((cellName, xIndex) => {
+        if (cells[cellName]) {
+          cells[cellName].addGridPosition = { x: xIndex, y: yIndex };
+          return cells[cellName];
+        } else {
+          cells[cellName] = new Cell(cellName, { x: xIndex, y: yIndex });
+          return cells[cellName];
+        }
       });
-      return this.setState({
-        grid,
-        cells,
-        activeCell,
-        activeCellCoords: cells[activeCell].gridPositions[0]
-      });
-    } else {
-      throw new Error("Provided grid is not valid");
-    }
+    });
+    return this.setState({
+      grid,
+      cells,
+      activeCell,
+      activeCellCoords: cells[activeCell].gridPositions[0]
+    });
   }
 
   setActiveCell(newActiveCell: string, direction: string): void {
