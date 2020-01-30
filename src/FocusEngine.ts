@@ -9,6 +9,8 @@ import {
 } from "./methods";
 
 import Cell from "./Cell";
+
+//  TODO: Add validation for default grid item not specified
 class FocusEngine extends Container {
   state: {
     coords: {
@@ -105,7 +107,7 @@ class FocusEngine extends Container {
     this.focusActions[cellName + index.join()] = func;
   }
 
-  onArrowUp() {
+  onArrowUp = () => {
     const { x, y } = this.state.coords;
     if (this.pipeMove(x, y - 1)) {
       this.setState({
@@ -115,9 +117,9 @@ class FocusEngine extends Container {
         }
       });
     }
-  }
+  };
 
-  onArrowDown() {
+  onArrowDown = () => {
     const { x, y } = this.state.coords;
     if (this.pipeMove(x, y + 1)) {
       this.setState({
@@ -127,9 +129,9 @@ class FocusEngine extends Container {
         }
       });
     }
-  }
+  };
 
-  onArrowLeft() {
+  onArrowLeft = () => {
     const { x, y } = this.state.coords;
     if (this.pipeMove(x - 1, y)) {
       this.setState({
@@ -139,9 +141,9 @@ class FocusEngine extends Container {
         }
       });
     }
-  }
+  };
 
-  onArrowRight() {
+  onArrowRight = () => {
     const { x, y } = this.state.coords;
     if (this.pipeMove(x + 1, y)) {
       this.setState({
@@ -151,13 +153,13 @@ class FocusEngine extends Container {
         }
       });
     }
-  }
+  };
 
-  onEnter() {
+  onEnter = () => {
     const { coords, activeCell } = this.state;
     this.focusActions[activeCell + [coords.x, coords.y].join()] &&
       this.focusActions[activeCell + [coords.x, coords.y].join()]();
-  }
+  };
 
   pipeMove(nX: number, nY: number) {
     const { coords }: { coords: Coords } = this.state;
