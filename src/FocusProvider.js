@@ -21,7 +21,7 @@ const FocusProvider = ({ children, cell }) => {
     });
   }
 
-  function renderFocusedElement(elem, x, y) {
+  function renderFocusedElement(elem, x, y, activeCell) {
     const [elemX, elemY] = elem.props.focusIndex;
 
     if (elem.props.focusAction) {
@@ -32,7 +32,7 @@ const FocusProvider = ({ children, cell }) => {
       );
     }
 
-    if (elemX === x && elemY === y) {
+    if (elemX === x && elemY === y && cell === activeCell) {
       return React.cloneElement(elem, {
         focused: true
       });
@@ -44,20 +44,16 @@ const FocusProvider = ({ children, cell }) => {
   function renderElementsWithFocus(engineState) {
     const { x, y } = engineState.coords;
     const { activeCell } = engineState;
-    if (activeCell === cell) {
-      let focusedElements = React.Children.map(children, elem => {
-        if (elem) {
-          if (!elem.props.focusIndex) {
-            throw new Error("Focus index not provided on elements");
-          }
-          return renderFocusedElement(elem, x, y);
+    let focusedElements = React.Children.map(children, elem => {
+      if (elem) {
+        if (!elem.props.focusIndex) {
+          throw new Error("Focus index not provided on elements");
         }
-      });
+        return renderFocusedElement(elem, x, y, activeCell);
+      }
+    });
 
-      return focusedElements;
-    } else {
-      return children;
-    }
+    return focusedElements;
   }
 
   return (
