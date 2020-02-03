@@ -34,7 +34,6 @@ export default class Cell {
 
   getNextLogicalIndex = (direction: string) => {
     if (direction === "-x") {
-      console.log(this.maxes);
       if (Math.max(...this.maxes.xMaxes) === 0) {
         return {
           x: 0,
