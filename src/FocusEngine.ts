@@ -10,6 +10,7 @@ import {
 
 import Cell from "./Cell";
 
+//  TODO: Add validation for default grid item not specified
 class FocusEngine extends Container {
   state: {
     coords: {
@@ -71,23 +72,22 @@ class FocusEngine extends Container {
         }
       });
     });
-    this.log("State update");
-    this.log({
-      coords: { x: 0, y: 0 },
-      grid,
-      cells,
-      activeCell,
-      activeCellCoords: cells[activeCell].gridPositions[0]
-    });
-    this.log("----------------------");
-    return this.setState({
-      coords: { x: 0, y: 0 },
-      grid,
-      cells,
-      activeCell,
-      activeCellCoords: cells[activeCell].gridPositions[0],
-      logs
-    });
+
+    return this.setState(
+      {
+        coords: { x: 0, y: 0 },
+        grid,
+        cells,
+        activeCell,
+        activeCellCoords: cells[activeCell].gridPositions[0],
+        logs
+      },
+      () => {
+        this.log("State update");
+        this.log(this.state);
+        this.log("----------------------");
+      }
+    );
   }
 
   setActiveCell(newActiveCell: string, direction: string): void {
