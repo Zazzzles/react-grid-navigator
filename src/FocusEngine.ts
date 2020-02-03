@@ -253,6 +253,11 @@ class FocusEngine extends Container {
         if (xMaxes[nY] < xMaxes[coords.y] && coords.x > xMaxes[nY]) {
           if (typeof xMaxes[nY] != "undefined") {
             canMove = false;
+            this.fireIndexChangeEvent({
+              nX: xMaxes[nY],
+              nY: nY,
+              direction: newCoords.direction
+            });
             this.setState({
               coords: {
                 x: xMaxes[nY],
@@ -276,6 +281,11 @@ class FocusEngine extends Container {
         if (xMaxes[nY] < xMaxes[coords.y] && coords.x > xMaxes[nY]) {
           if (typeof xMaxes[nY] != "undefined") {
             canMove = false;
+            this.fireIndexChangeEvent({
+              nX: xMaxes[nY],
+              nY: nY,
+              direction: newCoords.direction
+            });
             this.setState({
               coords: {
                 x: xMaxes[nY],
