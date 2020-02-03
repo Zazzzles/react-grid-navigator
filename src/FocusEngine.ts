@@ -296,6 +296,7 @@ class FocusEngine extends Container {
     if (canMove) {
       this.fireIndexChangeEvent(newCoords);
     }
+    this.log("----------------------");
     return canMove;
   }
 
