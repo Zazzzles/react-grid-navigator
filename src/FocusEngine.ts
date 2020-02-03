@@ -274,7 +274,7 @@ class FocusEngine extends Container {
     if (direction === "-y") {
       if (nY >= 0) {
         if (xMaxes[nY] < xMaxes[coords.y] && coords.x > xMaxes[nY]) {
-          if (xMaxes[nY]) {
+          if (typeof xMaxes[nY] != "undefined") {
             canMove = false;
             this.setState({
               coords: {
