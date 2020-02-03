@@ -26,10 +26,15 @@ export default class Cell {
     this.calculateDimensions();
   }
 
-  set addCoords(coords: Coords) {
-    this.coords.push(coords);
-    this.calculateMaxes();
-    this.calculateDimensions();
+  set addCoords(newCoords: Coords) {
+    let hasCoords = this.coords.reduce((acc: boolean, coords: Coords) => {
+      return newCoords.x === coords.x && newCoords.y === coords.y;
+    }, false);
+    if (!hasCoords) {
+      this.coords.push(newCoords);
+      this.calculateMaxes();
+      this.calculateDimensions();
+    }
   }
 
   getNextLogicalIndex = (direction: string) => {
