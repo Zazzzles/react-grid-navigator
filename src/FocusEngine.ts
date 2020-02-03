@@ -96,6 +96,12 @@ class FocusEngine extends Container {
     );
 
     const { cells, activeCell } = this.state;
+    this.fireIndexChangeEvent({
+      nX: cells[newActiveCell].gridPositions[0].x,
+      nY: cells[newActiveCell].gridPositions[0].y,
+      direction
+    });
+
     this.cellFocusEvents[newActiveCell] &&
       this.cellFocusEvents[newActiveCell]();
     this.cellBlurEvents[activeCell] && this.cellBlurEvents[activeCell]();
