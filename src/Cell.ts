@@ -28,7 +28,11 @@ export default class Cell {
 
   set addCoords(newCoords: Coords) {
     let hasCoords = this.coords.reduce((acc: boolean, coords: Coords) => {
-      return newCoords.x === coords.x && newCoords.y === coords.y;
+      if (!acc) {
+        return newCoords.x === coords.x && newCoords.y === coords.y;
+      } else {
+        return true;
+      }
     }, false);
     if (!hasCoords) {
       this.coords.push(newCoords);
