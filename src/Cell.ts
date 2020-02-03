@@ -27,13 +27,9 @@ export default class Cell {
   }
 
   set addCoords(newCoords: Coords) {
-    let hasCoords = this.coords.reduce((acc: boolean, coords: Coords) => {
-      if (!acc) {
-        return newCoords.x === coords.x && newCoords.y === coords.y;
-      } else {
-        return true;
-      }
-    }, false);
+    let hasCoords = !this.coords.every((coords: Coords) => {
+      return !(newCoords.x === coords.x && newCoords.y === coords.y);
+    });
     if (!hasCoords) {
       this.coords.push(newCoords);
       this.calculateMaxes();
