@@ -60,6 +60,11 @@ class FocusEngine extends Container {
     this.log("Setting grid");
     this.log(gridNames);
     this.log(`With active cell ${activeCell}`);
+
+    if (!activeCell) {
+      throw new Error("Active cell needs to be specified when setting grid");
+    }
+
     let cells: CellCollection = {};
     let grid = gridNames.map((rows, yIndex) => {
       return rows.map((cellName, xIndex) => {
@@ -96,6 +101,7 @@ class FocusEngine extends Container {
     );
 
     const { cells, activeCell } = this.state;
+
     this.fireIndexChangeEvent({
       nX: cells[newActiveCell].gridPositions[0].x,
       nY: cells[newActiveCell].gridPositions[0].y,
