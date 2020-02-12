@@ -10,7 +10,6 @@ import {
 
 import Cell from "./Cell";
 
-//  TODO: Add validation for default grid item not specified
 class FocusEngine extends Container {
   state: {
     coords: {
@@ -55,6 +54,7 @@ class FocusEngine extends Container {
   setGrid(
     gridNames: Array<[]>,
     activeCell: string,
+    startingIndex: Array<number> = [0, 0],
     logs = false
   ): Promise<void> {
     this.log("Setting grid");
@@ -80,7 +80,7 @@ class FocusEngine extends Container {
 
     return this.setState(
       {
-        coords: { x: 0, y: 0 },
+        coords: { x: startingIndex[0], y: startingIndex[1] },
         grid,
         cells,
         activeCell,

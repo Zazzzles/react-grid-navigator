@@ -78,7 +78,7 @@ FocusEngine.setGrid(
     ["sidenav", "contentTop", "sidebar"],
     ["sidenav", "content", "sidebar"]
   ],
-  "content"
+  "content" // <- starting cell
 );
 ```
 
@@ -103,6 +103,21 @@ FocusEngine.setGrid(
 ```
 
 Defining a grid is best done before all UI components are mounted. So do this in a top-level component's `componentDidMount` method after binding listeners.
+
+You can also pass a default coordinate for the starting cell by adding an additional argument to `setGrid` in the format of `[x: number, y:number]` which will be the default coordinate when the grid is set :
+
+```js
+import { FocusEngine } from "react-grid-navigator";
+
+FocusEngine.setGrid(
+  [
+    ["sidenav", "contentTop", "sidebar"],
+    ["sidenav", "content", "sidebar"]
+  ],
+  "content",
+  [0, 1] // <- Starting coordinate for cell `content`
+);
+```
 
 ## Defining focusable components
 
