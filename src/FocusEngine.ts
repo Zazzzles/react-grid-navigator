@@ -65,6 +65,8 @@ class FocusEngine extends Container {
       throw new Error("Active cell needs to be specified when setting grid");
     }
 
+    this.focusActions = {};
+
     let cells: CellCollection = {};
     let grid = gridNames.map((rows, yIndex) => {
       return rows.map((cellName, xIndex) => {
