@@ -3,9 +3,13 @@ import React, { memo, useEffect } from "react";
 import { Subscribe } from "./context";
 import FocusEngine from "./FocusEngine";
 
-const FocusProvider = ({ children, cell }) => {
+const FocusProvider = ({ children, cell, layout }) => {
   useEffect(() => {
     registerCells();
+    if (layout) {
+      const { grid, activeIndex } = layout;
+      FocusEngine.setGrid(grid, cell, activeIndex);
+    }
   });
 
   function registerCells() {
