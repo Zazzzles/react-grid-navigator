@@ -90,8 +90,14 @@ class FocusEngine extends Container {
         logs
       },
       () => {
-        this.log("State update");
+        this.log("------------ State update ----------");
         this.log(this.state);
+        this.log("------------ Focus actions ----------");
+        this.log(this.focusActions);
+        this.log("------------ Cell Focus Events ----------");
+        this.log(this.cellFocusEvents);
+        this.log("------------ Cell Blur Events ----------");
+        this.log(this.cellBlurEvents);
         this.log("----------------------");
       }
     );
