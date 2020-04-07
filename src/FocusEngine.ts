@@ -52,7 +52,7 @@ class FocusEngine extends Container {
   }
 
   overrideIndex(coords: Array<number>): void {
-    if (!coords[0] || !coords[1]) {
+    if (!coords) {
       throw new Error("Coordinates must be provided when overriding");
     } else {
       this.log("Overriding coords");
