@@ -17,7 +17,7 @@ Firstly we need to hook keyboard events into the FocusEngine
 ```js
 import { FocusEngine } from "react-grid-navigator";
 
-document.addEventListener("keydown", event => {
+document.addEventListener("keydown", (event) => {
   event.preventDefault();
   switch (event.code) {
     case "ArrowUp":
@@ -76,7 +76,7 @@ import { FocusEngine } from "react-grid-navigator";
 FocusEngine.setGrid(
   [
     ["sidenav", "contentTop", "sidebar"],
-    ["sidenav", "content", "sidebar"]
+    ["sidenav", "content", "sidebar"],
   ],
   "content" // <- starting cell
 );
@@ -96,7 +96,7 @@ import { FocusEngine } from "react-grid-navigator";
 FocusEngine.setGrid(
   [
     ["sidenav", "contentTop"],
-    ["sidenav", "content", "sidebar"]
+    ["sidenav", "content", "sidebar"],
   ],
   "content"
 );
@@ -112,7 +112,7 @@ import { FocusEngine } from "react-grid-navigator";
 FocusEngine.setGrid(
   [
     ["sidenav", "contentTop", "sidebar"],
-    ["sidenav", "content", "sidebar"]
+    ["sidenav", "content", "sidebar"],
   ],
   "content",
   [0, 1] // <- Starting coordinate for cell `content`
@@ -212,7 +212,7 @@ setDefaultGrid = () => {
   FocusEngine.setGrid(
     [
       ["sidenav", "contentTop", "sidebar"],
-      ["sidenav", "content", "sidebar"]
+      ["sidenav", "content", "sidebar"],
     ],
     "content"
   );
@@ -266,6 +266,10 @@ From this example we can se that the `modalTop` cell contains the close modal bu
 `FocusEngine.addCellFocusEvent(cellName, function)`
 
 This method is fired when a specific cell receives focus. This is useful for cases where we want to trigger things like a sidebar opening
+
+`FocusEngine.overrideIndex(coords)`
+
+This method will override the current coordinates that the navigator is set to. Coordinates to be provided in [x, y] format.
 
 `FocusEngine.addCellBlurEvent(cellName, function)`
 

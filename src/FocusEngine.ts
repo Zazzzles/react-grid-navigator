@@ -5,7 +5,7 @@ import { Coords, NewCoords, CellCollection, Maxes } from "./types";
 import {
   getDirection,
   applyDirectionCoords,
-  applyCellDimensionOffsets
+  applyCellDimensionOffsets,
 } from "./methods";
 
 import Cell from "./Cell";
@@ -31,13 +31,13 @@ class FocusEngine extends Container {
     this.state = {
       coords: {
         x: 0,
-        y: 0
+        y: 0,
       },
       activeCellCoords: { x: 0, y: 0 },
       grid: [],
       cells: {},
       activeCell: "",
-      logs: false
+      logs: false,
     };
     this.cellFocusEvents = {};
     this.cellBlurEvents = {};
@@ -48,6 +48,21 @@ class FocusEngine extends Container {
   log(m: any): void {
     if (this.state.logs) {
       console.log(m);
+    }
+  }
+
+  overrideIndex(coords: Array<number>): void {
+    if (!coords[0] || !coords[1]) {
+      throw new Error("Coordinates must be provided when overriding");
+    } else {
+      this.log("Overriding coords");
+      this.log(coords);
+      this.setState({
+        coords: {
+          x: coords[0],
+          y: coords[1],
+        },
+      });
     }
   }
 
@@ -87,7 +102,7 @@ class FocusEngine extends Container {
         cells,
         activeCell,
         activeCellCoords: cells[activeCell].gridPositions[0],
-        logs
+        logs,
       },
       () => {
         this.log("------------ State update ----------");
@@ -113,7 +128,7 @@ class FocusEngine extends Container {
     this.fireIndexChangeEvent({
       nX: cells[newActiveCell].gridPositions[0].x,
       nY: cells[newActiveCell].gridPositions[0].y,
-      direction
+      direction,
     });
 
     this.cellFocusEvents[newActiveCell] &&
@@ -123,12 +138,12 @@ class FocusEngine extends Container {
     this.log({
       activeCell: newActiveCell,
       activeCellCoords: cells[newActiveCell].gridPositions[0],
-      coords: cells[newActiveCell].getNextLogicalIndex(direction)
+      coords: cells[newActiveCell].getNextLogicalIndex(direction),
     });
     this.setState({
       activeCell: newActiveCell,
       activeCellCoords: cells[newActiveCell].gridPositions[0],
-      coords: cells[newActiveCell].getNextLogicalIndex(direction)
+      coords: cells[newActiveCell].getNextLogicalIndex(direction),
     });
     this.log("----------------------");
   }
@@ -170,8 +185,8 @@ class FocusEngine extends Container {
       this.setState({
         coords: {
           x,
-          y: y - 1
-        }
+          y: y - 1,
+        },
       });
     }
   };
@@ -183,8 +198,8 @@ class FocusEngine extends Container {
       this.setState({
         coords: {
           x,
-          y: y + 1
-        }
+          y: y + 1,
+        },
       });
     }
   };
@@ -196,8 +211,8 @@ class FocusEngine extends Container {
       this.setState({
         coords: {
           x: x - 1,
-          y
-        }
+          y,
+        },
       });
     }
   };
@@ -209,8 +224,8 @@ class FocusEngine extends Container {
       this.setState({
         coords: {
           x: x + 1,
-          y
-        }
+          y,
+        },
       });
     }
   };
@@ -228,7 +243,7 @@ class FocusEngine extends Container {
     let newCoords: NewCoords = {
       nX,
       nY,
-      direction: getDirection(nX, nY, coords.x, coords.y)
+      direction: getDirection(nX, nY, coords.x, coords.y),
     };
     return this.applyNavLogic(newCoords);
   }
@@ -237,7 +252,7 @@ class FocusEngine extends Container {
     this.log("Applying nav logic");
     const {
       cells,
-      activeCell
+      activeCell,
     }: { cells: CellCollection; activeCell: string } = this.state;
     const { maxes }: { maxes: Maxes } = cells[activeCell];
     const { coords }: { coords: Coords } = this.state;
@@ -276,13 +291,13 @@ class FocusEngine extends Container {
             this.fireIndexChangeEvent({
               nX: xMaxes[nY],
               nY: nY,
-              direction: newCoords.direction
+              direction: newCoords.direction,
             });
             this.setState({
               coords: {
                 x: xMaxes[nY],
-                y: nY
-              }
+                y: nY,
+              },
             });
           }
         } else {
@@ -304,13 +319,13 @@ class FocusEngine extends Container {
             this.fireIndexChangeEvent({
               nX: xMaxes[nY],
               nY: nY,
-              direction: newCoords.direction
+              direction: newCoords.direction,
             });
             this.setState({
               coords: {
                 x: xMaxes[nY],
-                y: nY
-              }
+                y: nY,
+              },
             });
           }
         } else {
@@ -343,7 +358,7 @@ class FocusEngine extends Container {
     let nextGridCoord = applyDirectionCoords({
       nX: activeCellCoords.x,
       nY: activeCellCoords.y,
-      direction
+      direction,
     });
     let nextCell = this.nextAvailableNeighboringCell(nextGridCoord);
     if (nextCell) {
@@ -353,7 +368,7 @@ class FocusEngine extends Container {
           {
             nX: activeCellCoords.x,
             nY: activeCellCoords.y,
-            direction
+            direction,
           },
           cells[activeCell].height,
           cells[activeCell].width
@@ -371,7 +386,7 @@ class FocusEngine extends Container {
   nextAvailableNeighboringCell(nextGridCoord: Coords) {
     const { cells } = this.state;
     let nextCell = undefined;
-    Object.keys(cells).forEach(cellName => {
+    Object.keys(cells).forEach((cellName) => {
       let canNavigate = cells[cellName].gridPositions.reduce(
         (acc: boolean, pos: Coords) => {
           if (!acc) {
