@@ -391,6 +391,8 @@ class FocusEngine extends Container {
   }
 
   tryNavigateToNewCell(newCoords: NewCoords) {
+    this.log('Trying to navigate to new cell with coords ');
+    this.log(newCoords);
     //  FIXME: Good god refine this
     const { cells, grid, activeCell, activeCellCoords } = this.state;
     const { nX, nY, direction } = newCoords;
@@ -400,9 +402,12 @@ class FocusEngine extends Container {
       direction,
     });
     let nextCell = this.nextAvailableNeighboringCell(nextGridCoord);
+    this.log('The next cell is ');
+    this.log(nextCell);
     if (nextCell) {
       //  If name is the same it is a spanned cell
       if (nextCell === activeCell) {
+        this.log('Applying cell dimension offsets');
         let nextCoords = applyCellDimensionOffsets(
           {
             nX: activeCellCoords.x,
@@ -412,6 +417,7 @@ class FocusEngine extends Container {
           cells[activeCell].height,
           cells[activeCell].width
         );
+        this.log(nextCoords);
         let nextNextCell = this.nextAvailableNeighboringCell(nextCoords);
         if (nextNextCell) {
           this.setActiveCell(nextNextCell, direction);
