@@ -15,6 +15,8 @@ export default class Cell {
     this.height = 0;
     this.gridPositions = [gridPosition];
     this.maxes = { xMaxes: [], yMaxes: [] };
+    this.calculateMaxes();
+    this.calculateDimensions();
   }
 
   set setName(name: string) {

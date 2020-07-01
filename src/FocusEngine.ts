@@ -66,29 +66,10 @@ class FocusEngine extends Container {
     }
   }
 
-  resetState = () => {
-    this.cellFocusEvents = {};
-    this.cellBlurEvents = {};
-    this.cellIndexChangeEvents = {};
-    this.focusActions = {};
-    return this.setState({
-      coords: {
-        x: 0,
-        y: 0,
-      },
-      activeCellCoords: { x: 0, y: 0 },
-      grid: [],
-      cells: {},
-      activeCell: '',
-      logs: false,
-    });
-  };
-
   async setGrid(
     gridNames: Array<[]>,
     activeCell: string,
     startingIndex: Array<number> = [0, 0],
-    stateReset = false,
     logs = false
   ): Promise<void> {
     if (logs) {
@@ -100,10 +81,6 @@ class FocusEngine extends Container {
 
     if (!activeCell) {
       throw new Error('Active cell needs to be specified when setting grid');
-    }
-
-    if (stateReset) {
-      await this.resetState();
     }
 
     let cells: CellCollection = {};
