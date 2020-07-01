@@ -66,12 +66,30 @@ class FocusEngine extends Container {
     }
   }
 
+  resetState = () => {
+    this.cellFocusEvents = {};
+    this.cellBlurEvents = {};
+    this.cellIndexChangeEvents = {};
+    this.focusActions = {};
+    return this.setState({
+      coords: {
+        x: 0,
+        y: 0,
+      },
+      activeCellCoords: { x: 0, y: 0 },
+      grid: [],
+      cells: {},
+      activeCell: '',
+      logs: false,
+    });
+  };
+
   setGrid(
     gridNames: Array<[]>,
     activeCell: string,
     startingIndex: Array<number> = [0, 0],
     logs = false
-  ): Promise<void> {
+  ): void {
     if (logs) {
       console.log('Setting grid with');
       console.log(gridNames);
@@ -83,42 +101,41 @@ class FocusEngine extends Container {
       throw new Error('Active cell needs to be specified when setting grid');
     }
 
-    this.focusActions = {};
-
-    let cells: CellCollection = {};
-    let grid = gridNames.map((rows, yIndex) => {
-      return rows.map((cellName, xIndex) => {
-        if (cells[cellName]) {
-          cells[cellName].addGridPosition = { x: xIndex, y: yIndex };
-          return cells[cellName];
-        } else {
-          cells[cellName] = new Cell(cellName, { x: xIndex, y: yIndex });
-          return cells[cellName];
-        }
+    this.resetState().then(() => {
+      let cells: CellCollection = {};
+      let grid = gridNames.map((rows, yIndex) => {
+        return rows.map((cellName, xIndex) => {
+          if (cells[cellName]) {
+            cells[cellName].addGridPosition = { x: xIndex, y: yIndex };
+            return cells[cellName];
+          } else {
+            cells[cellName] = new Cell(cellName, { x: xIndex, y: yIndex });
+            return cells[cellName];
+          }
+        });
       });
+      this.setState(
+        {
+          coords: { x: startingIndex[0], y: startingIndex[1] },
+          grid,
+          cells,
+          activeCell,
+          activeCellCoords: cells[activeCell].gridPositions[0],
+          logs,
+        },
+        () => {
+          this.log('------------ State update ----------');
+          this.log(this.state);
+          this.log('------------ Focus actions ----------');
+          this.log(this.focusActions);
+          this.log('------------ Cell Focus Events ----------');
+          this.log(this.cellFocusEvents);
+          this.log('------------ Cell Blur Events ----------');
+          this.log(this.cellBlurEvents);
+          this.log('----------------------');
+        }
+      );
     });
-
-    return this.setState(
-      {
-        coords: { x: startingIndex[0], y: startingIndex[1] },
-        grid,
-        cells,
-        activeCell,
-        activeCellCoords: cells[activeCell].gridPositions[0],
-        logs,
-      },
-      () => {
-        this.log('------------ State update ----------');
-        this.log(this.state);
-        this.log('------------ Focus actions ----------');
-        this.log(this.focusActions);
-        this.log('------------ Cell Focus Events ----------');
-        this.log(this.cellFocusEvents);
-        this.log('------------ Cell Blur Events ----------');
-        this.log(this.cellBlurEvents);
-        this.log('----------------------');
-      }
-    );
   }
 
   setActiveCell(newActiveCell: string, direction: string): void {

@@ -13,7 +13,6 @@ const FocusProvider = ({ children, cell }) => {
       if (elem) {
         if (elem.props.focusIndex) {
           const [x, y] = elem.props.focusIndex;
-          console.log('ADDING CELL COORDS ', cell, x, y);
           FocusEngine.addCellCoords(cell, { x, y });
         } else {
           throw new Error('Focus index not provided on elements');
