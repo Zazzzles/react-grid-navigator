@@ -1,4 +1,4 @@
-import { Coords, Maxes } from "./types";
+import { Coords, Maxes } from './types';
 
 export default class Cell {
   coords: Array<Coords>;
@@ -38,39 +38,44 @@ export default class Cell {
   }
 
   getNextLogicalIndex = (direction: string) => {
-    if (direction === "-x") {
+    if (direction === '-x') {
       if (Math.max(...this.maxes.xMaxes) === 0) {
         return {
           x: 0,
-          y: 0
+          y: 0,
         };
       } else {
         return {
           x: Math.max(...this.maxes.xMaxes),
-          y: this.maxes.yMaxes[Math.max(...this.maxes.xMaxes)]
+          y: this.maxes.yMaxes[Math.max(...this.maxes.xMaxes)],
         };
       }
     }
     return {
       x: 0,
-      y: 0
+      y: 0,
     };
   };
 
   calculateDimensions() {
-    let isHorizontal = this.gridPositions.every(coord => {
+    let isHorizontal = this.gridPositions.every((coord) => {
       return coord.y === this.gridPositions[0].y;
     });
-    let isVertical = this.gridPositions.every(coord => {
+    let isVertical = this.gridPositions.every((coord) => {
       return coord.x === this.gridPositions[0].x;
     });
-    if (isHorizontal) {
+    if (isHorizontal && isVertical) {
       this.width = this.gridPositions.length;
-      this.height = Math.max(...this.gridPositions.map(pos => pos.x));
-    }
-    if (isVertical) {
       this.height = this.gridPositions.length;
-      this.width = Math.max(...this.gridPositions.map(pos => pos.y));
+    } else {
+      if (isHorizontal) {
+        this.width = this.gridPositions.length;
+        this.height = Math.max(...this.gridPositions.map((pos) => pos.x));
+      }
+      if (isVertical) {
+        this.height = this.gridPositions.length;
+        this.width = Math.max(...this.gridPositions.map((pos) => pos.y));
+      }
     }
   }
 
@@ -78,7 +83,7 @@ export default class Cell {
     this.coords.forEach(({ x, y }) => {
       this.maxes = {
         xMaxes: this.updateMaxes(this.maxes.xMaxes, y, x),
-        yMaxes: this.updateMaxes(this.maxes.yMaxes, x, y)
+        yMaxes: this.updateMaxes(this.maxes.yMaxes, x, y),
       };
     });
   }
