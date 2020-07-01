@@ -1,21 +1,25 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect } from 'react';
 
-import { Subscribe } from "./context";
-import FocusEngine from "./FocusEngine";
+import { Subscribe } from './context';
+import FocusEngine from './FocusEngine';
 
 const FocusProvider = ({ children, cell }) => {
+  //  FIXME: Remove loots
   useEffect(() => {
+    console.log('##############################');
+    console.log('USING EFEECT TO REGISTER ', cell);
+    console.log('##############################');
     registerCells();
   });
 
   function registerCells() {
-    React.Children.forEach(children, elem => {
+    React.Children.forEach(children, (elem) => {
       if (elem) {
         if (elem.props.focusIndex) {
           const [x, y] = elem.props.focusIndex;
           FocusEngine.addCellCoords(cell, { x, y });
         } else {
-          throw new Error("Focus index not provided on elements");
+          throw new Error('Focus index not provided on elements');
         }
       }
     });
@@ -34,7 +38,7 @@ const FocusProvider = ({ children, cell }) => {
 
     if (elemX === x && elemY === y && cell === activeCell) {
       return React.cloneElement(elem, {
-        focused: true
+        focused: true,
       });
     } else {
       return elem;
@@ -44,10 +48,10 @@ const FocusProvider = ({ children, cell }) => {
   function renderElementsWithFocus(engineState) {
     const { x, y } = engineState.coords;
     const { activeCell } = engineState;
-    let focusedElements = React.Children.map(children, elem => {
+    let focusedElements = React.Children.map(children, (elem) => {
       if (elem) {
         if (!elem.props.focusIndex) {
-          throw new Error("Focus index not provided on elements");
+          throw new Error('Focus index not provided on elements');
         }
         return renderFocusedElement(elem, x, y, activeCell);
       }
@@ -58,9 +62,10 @@ const FocusProvider = ({ children, cell }) => {
 
   return (
     <Subscribe to={[FocusEngine]}>
-      {engine => renderElementsWithFocus(engine.state)}
+      {(engine) => renderElementsWithFocus(engine.state)}
     </Subscribe>
   );
 };
 
-export default memo(FocusProvider);
+//export default memo(FocusProvider);
+export default FocusProvider;
