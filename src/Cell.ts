@@ -14,7 +14,7 @@ export default class Cell {
     this.width = 0;
     this.height = 0;
     this.gridPositions = [gridPosition];
-    this.maxes = { xMaxes: [], yMaxes: [] };
+    this.maxes = { xMaxes: [0], yMaxes: [0] };
     this.calculateMaxes();
     this.calculateDimensions();
   }
