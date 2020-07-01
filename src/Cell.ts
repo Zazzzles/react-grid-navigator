@@ -58,25 +58,47 @@ export default class Cell {
   };
 
   calculateDimensions() {
+    //  FIXME: Remove these logs
+    console.log('##############################');
+    console.log('Calculating dimensions for', this.name);
+
     let isHorizontal = this.gridPositions.every((coord) => {
       return coord.y === this.gridPositions[0].y;
     });
     let isVertical = this.gridPositions.every((coord) => {
       return coord.x === this.gridPositions[0].x;
     });
+    console.log('isHorz : ', isHorizontal);
+    console.log('isVert : ', isVertical);
     if (isHorizontal && isVertical) {
+      console.log(
+        'Setting w and h to ',
+        this.gridPositions.length,
+        this.gridPositions.length
+      );
       this.width = this.gridPositions.length;
       this.height = this.gridPositions.length;
     } else {
       if (isHorizontal) {
+        console.log(
+          'Setting w and h to ',
+          this.gridPositions.length,
+          Math.max(...this.gridPositions.map((pos) => pos.x))
+        );
         this.width = this.gridPositions.length;
         this.height = Math.max(...this.gridPositions.map((pos) => pos.x));
       }
       if (isVertical) {
+        console.log(
+          'Setting w and h to ',
+          Math.max(...this.gridPositions.map((pos) => pos.y)),
+          this.gridPositions.length
+        );
         this.height = this.gridPositions.length;
         this.width = Math.max(...this.gridPositions.map((pos) => pos.y));
       }
     }
+    console.log('##############################');
   }
 
   calculateMaxes() {
