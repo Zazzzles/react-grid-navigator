@@ -423,6 +423,9 @@ class FocusEngine extends Container {
           this.setActiveCell(nextNextCell, direction);
         }
       } else {
+        this.log('Setting new active cell');
+        this.log(nextCell);
+        this.log(direction);
         this.setActiveCell(nextCell, direction);
       }
     }
