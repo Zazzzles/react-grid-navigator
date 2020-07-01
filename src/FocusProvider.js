@@ -8,21 +8,25 @@ const FocusProvider = ({ children, cell }) => {
   useEffect(() => {
     console.log('##############################');
     console.log('USING EFEECT TO REGISTER ', cell);
-    console.log('##############################');
+
     registerCells();
   });
 
   function registerCells() {
     React.Children.forEach(children, (elem) => {
       if (elem) {
+        console.log('ELEMENT FOUND IN CELL');
+
         if (elem.props.focusIndex) {
           const [x, y] = elem.props.focusIndex;
+          console.log('ADDING CELL COORDS ', cell, x, y);
           FocusEngine.addCellCoords(cell, { x, y });
         } else {
           throw new Error('Focus index not provided on elements');
         }
       }
     });
+    console.log('##############################');
   }
 
   function renderFocusedElement(elem, x, y, activeCell) {
