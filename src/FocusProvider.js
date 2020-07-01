@@ -4,19 +4,13 @@ import { Subscribe } from './context';
 import FocusEngine from './FocusEngine';
 
 const FocusProvider = ({ children, cell }) => {
-  //  FIXME: Remove loots
   useEffect(() => {
-    console.log('##############################');
-    console.log('USING EFEECT TO REGISTER ', cell);
-
     registerCells();
   });
 
   function registerCells() {
     React.Children.forEach(children, (elem) => {
       if (elem) {
-        console.log('ELEMENT FOUND IN CELL');
-
         if (elem.props.focusIndex) {
           const [x, y] = elem.props.focusIndex;
           console.log('ADDING CELL COORDS ', cell, x, y);
@@ -26,7 +20,6 @@ const FocusProvider = ({ children, cell }) => {
         }
       }
     });
-    console.log('##############################');
   }
 
   function renderFocusedElement(elem, x, y, activeCell) {
@@ -71,5 +64,4 @@ const FocusProvider = ({ children, cell }) => {
   );
 };
 
-//export default memo(FocusProvider);
-export default FocusProvider;
+export default memo(FocusProvider);

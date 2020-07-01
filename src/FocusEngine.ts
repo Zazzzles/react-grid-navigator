@@ -72,9 +72,12 @@ class FocusEngine extends Container {
     startingIndex: Array<number> = [0, 0],
     logs = false
   ): Promise<void> {
-    this.log('Setting grid');
-    this.log(gridNames);
-    this.log(`With active cell ${activeCell}`);
+    if (logs) {
+      console.log('Setting grid with');
+      console.log(gridNames);
+      console.log('Current state:');
+      console.log(this.state);
+    }
 
     if (!activeCell) {
       throw new Error('Active cell needs to be specified when setting grid');
@@ -150,9 +153,6 @@ class FocusEngine extends Container {
 
   addCellCoords(cell: string, coords: Coords): void {
     let { grid } = this.state;
-    //  FIXME: REMOVE THESE COMMENTS
-    console.log('LOOKING FOR CELL IN GRID TO ADD COORDST TO');
-    console.log(grid);
     let selectedCell = grid.reduce((acc: any | undefined, row: Array<Cell>) => {
       if (!acc) {
         return row.find((item: Cell) => item.name === cell);
@@ -160,7 +160,6 @@ class FocusEngine extends Container {
         return acc;
       }
     }, null);
-    console.log('SELECTED CELL = ', selectedCell);
     if (selectedCell) {
       selectedCell.addCoords = coords;
     }
