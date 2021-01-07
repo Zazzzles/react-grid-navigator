@@ -19,7 +19,8 @@ class FocusEngine extends Container {
     };
     activeCellCoords: { x: 0; y: 0 };
     previousGrids: {};
-    loadedGridHash: "",
+    loadedGridHash: "";
+    provisionedCoords: {};
     grid: [];
     cells: { [key: string]: Cell };
     activeCell: "";
@@ -39,6 +40,7 @@ class FocusEngine extends Container {
       activeCellCoords: { x: 0, y: 0 },
       previousGrids: {},
       loadedGridHash: "",
+      provisionedCoords: {},
       grid: [],
       cells: {},
       activeCell: "",
@@ -114,6 +116,7 @@ class FocusEngine extends Container {
         logs
       },
       () => {
+        this.loadProvisionedCellCoords()
         this.log("------------ State update ----------");
         this.log(this.state);
         this.log("------------ Focus actions ----------");
@@ -157,19 +160,45 @@ class FocusEngine extends Container {
     this.log("----------------------");
   }
 
-  addCellCoords(cell: string, coords: Coords): void {
-    let { previousGrids, loadedGridHash } = this.state;
-    const loadedGrid = (previousGrids as any)[loadedGridHash]
-    let selectedCell = loadedGrid.grid.reduce((acc: any | undefined, row: Array<Cell>) => {
-      if (!acc) {
-        return row.find((item: Cell) => item.name === cell);
-      } else {
-        return acc;
-      }
-    }, null);
-    if (selectedCell) {
-      selectedCell.addCoords = coords;
+  loadProvisionedCellCoords():void{
+    //  Load coords from tempory holder after grid is finally set
+    const { provisionedCoords } = this.state
+    if( Object.keys(provisionedCoords).length !== 0){
+      Object.keys(provisionedCoords).forEach(cellName => {
+        (provisionedCoords as any)[cellName].forEach((coords: any) => {
+          this.addCellCoords(cellName, coords)
+        });
+      })
+      this.setState({provisionedCoords: {}})
     }
+  }
+
+  addCellCoords(cell: string, coords: Coords): void {
+    let { previousGrids, loadedGridHash, provisionedCoords } = this.state;
+    const loadedGrid = (previousGrids as any)[loadedGridHash]
+    if(!loadedGrid){
+      //  if grid is not yet set, add coords to temporary holder
+      if((provisionedCoords as any)[cell]){
+        (provisionedCoords as any)[cell].push(coords)
+      }else{
+        (provisionedCoords as any)[cell] = [coords]
+      }
+      this.setState({
+        provisionedCoords
+      })
+    }else{
+      let selectedCell = loadedGrid.grid.reduce((acc: any | undefined, row: Array<Cell>) => {
+        if (!acc) {
+          return row.find((item: Cell) => item.name === cell);
+        } else {
+          return acc;
+        }
+      }, null);  
+      if (selectedCell) {
+        selectedCell.addCoords = coords;
+      }
+    }
+    
   }
 
   addCellFocusEvent(cellName: string, func: Function) {
