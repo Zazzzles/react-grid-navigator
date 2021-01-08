@@ -6,7 +6,7 @@ import FocusEngine from './FocusEngine'
 const FocusProvider = ({ children, cell }) => {
   useEffect(() => {
     registerCells()
-  }, [])
+  })
 
   function registerCells() {
     React.Children.forEach(children, (elem) => {
