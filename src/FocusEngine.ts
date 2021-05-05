@@ -317,6 +317,8 @@ class FocusEngine extends Container {
 
     if (direction === "y") {
       // Down arrow pressed
+      console.log(yMaxes[coords.x] < nY);
+      console.log(xMaxes[nY] < xMaxes[coords.y] && coords.x > xMaxes[nY]);
       if (yMaxes[coords.x] < nY) {
         if (xMaxes[nY] < xMaxes[coords.y] && coords.x > xMaxes[nY]) {
           console.log(this.state);
