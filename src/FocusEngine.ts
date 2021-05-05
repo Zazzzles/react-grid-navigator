@@ -346,23 +346,21 @@ class FocusEngine extends Container {
           canMove = false;
           this.tryNavigateToNewCell(newCoords);
         }
+      } else if (xMaxes[nY] < nX) {
+        canMove = false;
+        this.log(xMaxes[nY] < nX);
+        this.fireIndexChangeEvent({
+          nX: xMaxes[nY],
+          nY: nY,
+          direction: newCoords.direction,
+        });
+        this.applyNewCoords({
+          x: xMaxes[nY],
+          y: nY,
+        });
       } else {
-        if (xMaxes[nY] < nX) {
-          canMove = false;
-          this.log(xMaxes[nY] < nX);
-          this.fireIndexChangeEvent({
-            nX: xMaxes[nY],
-            nY: nY,
-            direction: newCoords.direction,
-          });
-          this.applyNewCoords({
-            x: xMaxes[nY],
-            y: nY,
-          });
-        } else {
-          this.log("Move legal");
-          canMove = true;
-        }
+        this.log("Move legal");
+        canMove = true;
       }
     }
 
@@ -388,6 +386,18 @@ class FocusEngine extends Container {
             //   },
             // });
           }
+        } else if (xMaxes[nY] < nX) {
+          canMove = false;
+          this.log(xMaxes[nY] < nX);
+          this.fireIndexChangeEvent({
+            nX: xMaxes[nY],
+            nY: nY,
+            direction: newCoords.direction,
+          });
+          this.applyNewCoords({
+            x: xMaxes[nY],
+            y: nY,
+          });
         } else {
           this.log("Move legal");
           canMove = true;
