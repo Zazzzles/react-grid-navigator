@@ -1,6 +1,6 @@
 {
   "name": "react-grid-navigator",
-  "version": "1.2.24",
+  "version": "1.2.25",
   "description": "A keyboard based focus navigation engine for React",
   "source": "src/index.ts",
   "main": "dist/index.js",
@@ -9,14 +9,24 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
+    "@babel/plugin-transform-runtime": "^7.13.15",
+    "@babel/preset-env": "^7.14.1",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "typescript": "^3.7.5",
-    "microbundle": "^0.11.0"
+    "typescript": "^3.7.5"
   },
   "scripts": {
-    "prepublish": "npm run build",
-    "build": "microbundle --tsconfig ./tsconfig.json --jsx React.createElement"
+    "prepare": "npm run build",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build": "npm run build:types && npm run build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src --out-dir dist --extensions \".ts,.tsx,.js\" --source-maps inline"
   },
   "files": [
     "dist"
@@ -35,6 +45,15 @@
     "accessibility",
     "javascript"
   ],
-  "author": "Ras Brits",
+  "author": {
+    "name": "Ras Brits",
+    "url": "https://www.rasbrits.com/"
+  },
+  "contributors": [
+    {
+      "name": "Daniel Curran",
+      "url": "https://twiggybuffalo.com"
+    }
+  ],
   "license": "MIT"
 }
