@@ -5,7 +5,7 @@ const StateContext = createContext(null);
 export class Container {
   _listeners = [];
 
-  setState(updater, callback) {
+  setState(updater, callback = null) {
     return Promise.resolve().then(() => {
       let nextState;
 
