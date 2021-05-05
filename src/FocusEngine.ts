@@ -317,17 +317,10 @@ class FocusEngine extends Container {
 
     if (direction === "y") {
       // Down arrow pressed
-      console.log("xMaxes", xMaxes[nY]);
-      console.log("First", yMaxes[coords.x] < nY);
-      console.log(
-        "Second",
-        xMaxes[nY] < xMaxes[coords.y] && coords.x > xMaxes[nY]
-      );
-      console.log("xMaxes[nY]", xMaxes[nY]);
-      console.log("xMaxes[coords.y]", xMaxes[coords.y]);
       if (yMaxes[coords.x] < nY) {
         if (xMaxes[nY] < xMaxes[coords.y] && coords.x > xMaxes[nY]) {
           if (typeof xMaxes[nY] != "undefined") {
+            console.log(this.state);
             canMove = false;
             this.fireIndexChangeEvent({
               nX: xMaxes[nY],
