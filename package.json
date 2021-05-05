@@ -1,6 +1,6 @@
 {
-  "name": "@twiggybuffalo/react-grid-navigator",
-  "version": "1.2.33",
+  "name": "react-grid-navigator",
+  "version": "1.2.25",
   "description": "A keyboard based focus navigation engine for React",
   "source": "src/index.ts",
   "main": "dist/index.js",
@@ -33,7 +33,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/TwiggyBuffalo/react-grid-navigator.git"
+    "url": "https://github.com/Zazzzles/react-grid-navigator.git"
   },
   "keywords": [
     "react",
@@ -45,7 +45,10 @@
     "accessibility",
     "javascript"
   ],
-  "author": "Ras Brits",
+  "author": {
+    "name": "Ras Brits",
+    "url": "https://www.rasbrits.com/"
+  },
   "contributors": [
     {
       "name": "Daniel Curran",
