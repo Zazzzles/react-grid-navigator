@@ -316,14 +316,9 @@ class FocusEngine extends Container {
     }
 
     if (direction === "y") {
-      // Down arrow pressed
-      this.log(yMaxes[coords.x] < nY);
-      this.log(xMaxes[nY] < xMaxes[coords.y] && coords.x > xMaxes[nY]);
       if (yMaxes[coords.x] < nY) {
         if (xMaxes[nY] < xMaxes[coords.y] && coords.x > xMaxes[nY]) {
-          this.log(this.state);
           if (typeof xMaxes[nY] != "undefined") {
-            this.log(this.state);
             canMove = false;
             this.fireIndexChangeEvent({
               nX: xMaxes[nY],
@@ -334,12 +329,6 @@ class FocusEngine extends Container {
               x: xMaxes[nY],
               y: nY,
             });
-            // this.setState({
-            //   coords: {
-            //     x: xMaxes[nY],
-            //     y: nY,
-            //   },
-            // });
           }
         } else {
           this.log("Cell edge reached");
@@ -348,7 +337,6 @@ class FocusEngine extends Container {
         }
       } else if (xMaxes[nY] < nX) {
         canMove = false;
-        this.log(xMaxes[nY] < nX);
         this.fireIndexChangeEvent({
           nX: xMaxes[nY],
           nY: nY,
@@ -365,7 +353,6 @@ class FocusEngine extends Container {
     }
 
     if (direction === "-y") {
-      // Up arrow pressed
       if (nY >= 0) {
         if (xMaxes[nY] < xMaxes[coords.y] && coords.x > xMaxes[nY]) {
           if (typeof xMaxes[nY] != "undefined") {
@@ -379,16 +366,9 @@ class FocusEngine extends Container {
               x: xMaxes[nY],
               y: nY,
             });
-            // this.setState({
-            //   coords: {
-            //     x: xMaxes[nY],
-            //     y: nY,
-            //   },
-            // });
           }
         } else if (xMaxes[nY] < nX) {
           canMove = false;
-          this.log(xMaxes[nY] < nX);
           this.fireIndexChangeEvent({
             nX: xMaxes[nY],
             nY: nY,
