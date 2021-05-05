@@ -1,5 +1,5 @@
 {
-  "name": "react-grid-navigator",
+  "name": "@twiggybuffalo/react-grid-navigator",
   "version": "1.2.24",
   "description": "A keyboard based focus navigation engine for React",
   "source": "src/index.ts",
@@ -9,10 +9,10 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
+    "microbundle": "^0.11.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "typescript": "^3.7.5",
-    "microbundle": "^0.11.0"
+    "typescript": "^3.7.5"
   },
   "scripts": {
     "prepublish": "npm run build",
@@ -23,7 +23,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Zazzzles/react-grid-navigator.git"
+    "url": "https://github.com/TwiggyBuffalo/react-grid-navigator.git"
   },
   "keywords": [
     "react",
