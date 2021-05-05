@@ -1,6 +1,6 @@
 {
   "name": "@twiggybuffalo/react-grid-navigator",
-  "version": "1.2.29",
+  "version": "1.2.30",
   "description": "A keyboard based focus navigation engine for React",
   "source": "src/index.ts",
   "main": "dist/index.js",
