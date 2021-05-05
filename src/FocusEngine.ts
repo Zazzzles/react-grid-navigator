@@ -347,8 +347,22 @@ class FocusEngine extends Container {
           this.tryNavigateToNewCell(newCoords);
         }
       } else {
-        this.log("Move legal");
-        canMove = true;
+        if (xMaxes[nY] < nX) {
+          canMove = false;
+          this.log(xMaxes[nY] < nX);
+          this.fireIndexChangeEvent({
+            nX: xMaxes[nY],
+            nY: nY,
+            direction: newCoords.direction,
+          });
+          this.applyNewCoords({
+            x: xMaxes[nY],
+            y: nY,
+          });
+        } else {
+          this.log("Move legal");
+          canMove = true;
+        }
       }
     }
 
